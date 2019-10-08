@@ -16,12 +16,15 @@ class Circle{
     Center = new PVector(x,y);
     r = radius;
     // Si c = 0 (Circulo negro o figura principal) no debe existir movimiento PVector = <0,0>
-    offsetMovement = new PVector(sc*random(5,20),sc*random(5,20)); 
-    noiseMovement = new PVector(sc*random(5,20),sc*random(5,20)); 
+    offsetMovement = new PVector(sc*random(5,50),sc*random(5,50)); 
+    noiseMovement = new PVector(sc*random(5,50),sc*random(5,50));
+    t = sin(id/1000)*255;
     movement = new PVector();
   }
   void move(){
     if(mousePressed){
+      randomness = random(256);
+      randomnessRGB = int(random(3));
       movement.x = 0;
       movement.y = 0;
       s = 0;
@@ -37,7 +40,24 @@ class Circle{
       }
     }
   }
+  float t;
   void display(){
+    //if(offsetMovement != new PVector(0,0,0))
+      colorea();
+    //else
+      //fill(255);
     ellipse(Center.x+movement.x,Center.y+movement.y,r,r);
+  }
+  
+  private void colorea(){
+    float xprom = 255*Center.x/width, yprom = 255*Center.y/height;
+    color col = 0;
+    switch(randomnessRGB){
+      case(0): col = color(randomness,xprom,yprom) ;break;
+      case(1): col = color(xprom,randomness,yprom) ;break;
+      case(2): col = color(xprom,yprom,randomness) ;break;
+    }
+    stroke(col);
+    fill(col);
   }
 }
