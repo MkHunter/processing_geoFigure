@@ -8,7 +8,7 @@ ArrayList<Polygon> Polygons;   //Lista de Polígonos
 //Método para inicializar
 void setup(){
   //Titulo de la ventana
-  surface.setTitle("Icosphere - López Malacón Miguel Ernesto 7:00-8:00"); 
+  surface.setTitle("Icosphere - Mike López"); 
   //Tamaño de la ventana of 1200 x 800
   size(1200,800);
   //Carga la información de todas las figuras
@@ -21,15 +21,15 @@ void draw(){
   //Se dibuja el fondo Gris
   background(128);
   //Mensaje de texto
-  text("Presione el mouse para ver imagen estática.",0,height-50);
-  text("Presione el teclado para ver otros movimientos",0,height-20);
+  text("Press the mouse to show static image.",0,height-50);
+  text("Press the any key to display Noise movement.",0,height-20);
   //Se dibuja la imagen
   drawShapes();
 }
 
 void loadData(){
   //Se inicializan las listas cargando la información
-  //desde los archivos Datos/*.csv
+  //desde los archivos data/*.csv
   WhiteCircles = getCircles(1);  
   BlackCircles = getCircles(0);  
   Colors = getColors();          
@@ -39,7 +39,7 @@ void loadData(){
 //Metodo para obtener la lista de Triangulos
 ArrayList<Triangle> getTriangles(){
   //Se cargan los datos de la tabla de Excel
-  Table TrianglesData = loadTable("Datos/Triangles.csv","header");
+  Table TrianglesData = loadTable("../data/Triangles.csv","header");
   ArrayList<Triangle> temp = new ArrayList<Triangle>();
     for(int i = 0; i < TrianglesData.getRowCount();i++){
     TableRow row = TrianglesData.getRow(i);
@@ -57,7 +57,7 @@ ArrayList<Triangle> getTriangles(){
 //Metodo para obtener la lista de Colores
 ArrayList<Integer> getColors(){
   //Se cargan los datos de la tabla de Excel
-  Table ColorsData = loadTable("Datos/Colors.csv","header");
+  Table ColorsData = loadTable("data/Colors.csv","header");
   ArrayList<Integer> temp = new ArrayList<Integer>();
   
   for(int i = 0; i < ColorsData.getRowCount();i++){
@@ -73,7 +73,7 @@ ArrayList<Integer> getColors(){
 //Metodo para obtener la lista de Circulos de cierto color
 ArrayList<Circle> getCircles(int circleColor){
   //Se cargan los datos de la tabla de Excel
-  Table CirclesData = loadTable("Datos/Nodes.csv","header");
+  Table CirclesData = loadTable("data//Nodes.csv","header");
   if (circleColor == 255)
       circleColor = 1;
   if (circleColor < 0 || circleColor > 1){
@@ -99,7 +99,7 @@ ArrayList<Circle> getCircles(int circleColor){
 //Metodo para obtener las listas con Polígonos
 ArrayList<Polygon> getPolygons(){
   //Se cargan los datos de la tabla de Excel
-  Table PolyTable = loadTable("Datos/Polygons.csv","header");
+  Table PolyTable = loadTable("data/Polygons.csv","header");
   //Se crea la lista de Poligonos
   ArrayList<Polygon> temp = new ArrayList<Polygon>();
   String [] headers = {"Aid","Bid","Cid","Did"};
